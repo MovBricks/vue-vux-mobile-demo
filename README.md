@@ -1,6 +1,10 @@
 # vue-vux-mobile-demo
 
-> A Vue.js project
+>仿某应用的移动端web app <br/>
+>vue全家桶 + vux(界面) + animate(过渡动画)
+
+[手机访问入口](https://movbricks.github.io/vue-vux-mobile-demo/dist)
+
 
 ## Build Setup
 
