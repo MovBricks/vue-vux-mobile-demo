@@ -38,7 +38,7 @@
       }
     },
     methods: {
-      ...mapActions([
+      ...mapActions('storeIndexPage', [
         'changeAsideShowFlag'
       ])
     }

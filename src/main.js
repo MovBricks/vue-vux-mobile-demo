@@ -7,16 +7,18 @@ import App from './App'
 import router from './router'
 import store from './store'
 
+import infiniteScroll from 'vue-infinite-scroll'
+import './mock'
+
+Vue.use(infiniteScroll)
+
 FastClick.attach(document.body)
 
 Vue.config.productionTip = false
 
-// Vue.prototype.axios = axios
-
 var vm = new Vue({
   el: '#app',
   store,
-  // axios,
   router,
   render: h => h(App)
 })

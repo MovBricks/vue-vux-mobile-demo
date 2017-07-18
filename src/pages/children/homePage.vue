@@ -1,30 +1,48 @@
 <template>
-  <div class="hello">
-    <!--<header class="headerNavBar">-->
-      <!--<button class="headerNavBarIcon" @click="asideUserInfoClick()"><x-icon type="android-person" size="27"></x-icon></button>-->
-      <!--<h1>{{headerTitle}}</h1>-->
-      <!--<a class="headerNavBarIcon"><x-icon type="search" size="27"></x-icon></a>-->
-    <!--</header>-->
-    <com-header :title="headerTitle"></com-header>
-    <section class="waterFall">
-
+  <div class="homePage">
+    <com-header :title="headerTitle" class="homePageHeader"></com-header>
+    <section
+      v-infinite-scroll="loadMore"
+      infinite-scroll-disabled="loading"
+      infinite-scroll-distance="10"
+      class="waterFall">
+      <com-card v-for="(item,index) in list" :key="index" :tag="item.toString()"></com-card>
     </section>
   </div>
 </template>
 
 <script>
   import comHeader from '../../components/header/headNavBar.vue'
+  import comCard from '../../components/card/card.vue'
   export default {
     name: 'homePage',
     components: {
-      'com-header': comHeader
+      'com-header': comHeader,
+      'com-card': comCard
     },
     data: function () {
       return {
+        list: [
+          1,
+          2
+        ],
+        loading: false,
         headerTitle: '一个'
       }
     },
     methods: {
+      loadMore: function () {
+        console.log('laodMore')
+        this.loading = true
+        setTimeout(() => {
+          let last = this.list[this.list.length - 1]
+          for (let i = 1; i <= 10; i++) {
+            this.list.push(last + i)
+          }
+          this.loading = false
+          console.log(this.list)
+        }, 1500)
+      }
     }
   }
 </script>
@@ -32,15 +50,16 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped>
-  .headerNavBar{
-    background-color: white;
-    color: black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .homePage{
+    padding: 50px 0;
   }
-  .headerNavBarIcon{
-    margin: 0 10px;
-    fill: rgb(53,73,94);;
+  .homePageHeader{
+    position: fixed;
+    top:0;
+    width: 100%;
+    z-index: 10;
   }
+  .waterFall{
+  }
+
 </style>

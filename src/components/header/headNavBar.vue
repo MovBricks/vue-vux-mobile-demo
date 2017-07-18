@@ -21,7 +21,7 @@
       }
     },
     methods: {
-      ...mapActions([
+      ...mapActions('storeIndexPage', [
         'changeAsideShowFlag'
       ])
     }
@@ -37,7 +37,7 @@
   }
   .headerNavBarIcon{
     margin: 0 10px;
-    fill: rgb(53,73,94);;
+    fill: rgb(53,73,94);
   }
 </style>
 

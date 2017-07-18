@@ -15,15 +15,15 @@ export default {
   @import '../node_modules/vux/src/styles/reset.less';
   h1{
     font-weight: normal;
+    font-family: "PingFangSC-Light",sans-serif;
   }
 
   body {
     background-color: #fbf9fe;
   }
-
   button{
     outline: none;
-    background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255,0);
     border: none;
   }
 </style>
