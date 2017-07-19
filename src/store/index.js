@@ -4,11 +4,9 @@ import * as actions from './actions'
 import * as getters from './getters'
 import * as mutations from './mutations'
 import storeIndexPage from './modules/storeIndexPage'
-import storeSportsDetail from './modules/storeSportsDetail'
-import storeCalenderSportsSteps from './modules/storeCalenderSportsSteps'
-import storeDraggableComponent from './modules/storeDraggableComponent'
 import storeHomePage from './modules/storeHomePage'
-import storeUserMessage from './modules/storeUserMessage'
+import storeReadPage from './modules/storeReadPage'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -16,12 +14,9 @@ export default new Vuex.Store({
   getters,
   mutations,
   modules: {
+    storeReadPage,
     storeIndexPage,
-    storeSportsDetail,
-    storeCalenderSportsSteps,
-    storeDraggableComponent,
-    storeHomePage,
-    storeUserMessage
+    storeHomePage
   },
   strict: process.env.NODE_ENV !== 'production'
 })

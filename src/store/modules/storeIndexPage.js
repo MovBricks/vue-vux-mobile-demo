@@ -14,7 +14,6 @@ const getters = {
 // actions
 const actions = {
   changeAsideShowFlag ({commit}, stat) {
-    console.log('vuex typeof stat:' + typeof stat)
     if (typeof stat === 'boolean') {
       commit(types.CHANGE_ASIDE_SHOW_FLAG, stat)
     }

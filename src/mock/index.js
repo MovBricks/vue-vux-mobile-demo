@@ -1,24 +1,25 @@
 import Mock from 'mockjs'
-
+import onelistObj from './database/onelist'
+import essayObj from './database/essay'
 var mockstart = function () {
   // console.log('mockinit!!')
-  Mock.mock('/detailcalorie', {
-    'timeCalorie|14': [{
-      'timeObj|4': {
-        'year|2017': 2017,
-        'month|4': 4,
-        'mday|+1': 10,
-        'wday': '日'
-      },
-      'value|1000-6000': 1
-    }]
+  Mock.mock('http://v3.wufazhuce.com:8000/api/onelist/idlist', {
+    'res': '@natural(0, 0)',
+    'data|1-1': [
+      '4308',
+      '4312',
+      '4287',
+      '4286',
+      '4285',
+      '4284',
+      '4283',
+      '4281',
+      '4277',
+      '4202'
+    ]
   })
-  Mock.mock('/nowcalorie', {
-    'nowCalorie|1000-6000': 1
-  })
-  Mock.mock('/streamCardList', {
-    'streamCardList|1000-6000': 1
-  })
+  Mock.mock('http://v3.wufazhuce.com:8000/api/onelist/4308/0', onelistObj)
+  Mock.mock('http://v3.wufazhuce.com:8000/api/essay/2632', essayObj)
   Mock.mock('/sportsheart', {
     'sportsheart|1000-6000': 1
   })

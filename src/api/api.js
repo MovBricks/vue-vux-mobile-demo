@@ -41,7 +41,7 @@ export default {
   // 上拉刷新获取下一页音乐列表
   getNextMusic: '/api/channel/music/more/{id}',
   // 根据 `item_id` 获取音乐详情信息
-  getMusicById: '/api/music/detail/{id}',
+  getMusicById: '/api/music/details/{id}',
 
   /**
    * 影视
@@ -54,6 +54,6 @@ export default {
   // 根据id获取影视详情信息
   getMovieById: '/api/movie/{id}/story/1/0',
   // 根据id获取头部滚动的五张图片和电影海报信息
-  getMoviePhotosById: '/api/movie/detail/{id}'
+  getMoviePhotosById: '/api/movie/details/{id}'
 
 }

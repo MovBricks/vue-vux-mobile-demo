@@ -13,13 +13,19 @@ export default {
 
 <style lang="less">
   @import '../node_modules/vux/src/styles/reset.less';
+  html {
+    font-size: 62.5%;
+  }
+  body {
+    /*background-color: #fbf9fe;*/
+    background-color: #efefef;
+  }
   h1{
     font-weight: normal;
     font-family: "PingFangSC-Light",sans-serif;
   }
-
-  body {
-    background-color: #fbf9fe;
+  ul,li{
+    list-style-type:none
   }
   button{
     outline: none;

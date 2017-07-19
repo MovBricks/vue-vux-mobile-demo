@@ -1,4 +1,4 @@
-import serve from '../../api/axios-instance/home'
+import server from '../../api/axios-instance/home'
 import * as types from '../mutation-types.js'
 
 const state = {
@@ -20,13 +20,13 @@ const getters = {
 
 const actions = {
   getIdlist ({ dispatch, commit, state }) {
-    serve.getIdlist().then(response => {
+    server.getIdlist().then(response => {
       commit(types.RECEIVE_IDLIST, response.data.data)
       dispatch('getHpById', state.idlist[0])
     })
   },
   getHpById ({ dispatch, commit, state }, id) {
-    serve.getHpById(id).then(response => {
+    server.getHpById(id).then(response => {
       let hp = response.data.data
       commit(types.RECEIVE_HP, hp)
       dispatch('weather', hp)
