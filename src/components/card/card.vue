@@ -7,7 +7,7 @@
     </header>
     <div class="cardContent">
       <div class="cardContentImgWrapper">
-        <!--<img :src="imgSrc" class="cardContentImg" alt="文章图片">-->
+        <div class="cardContentImgDashed" v-if="category === '影视'"></div>
         <x-img
           class="cardContentImg"
           :src="imgSrc"
@@ -15,6 +15,7 @@
           @on-error="error"
           :offset="400"
           container="#IdWaterFall"></x-img>
+        <div class="cardContentImgDashed" v-if="category === '影视'"></div>
       </div>
       <p class="cardContentForward">{{forward}}</p>
     </div>
@@ -35,6 +36,9 @@
 
   export default {
     props: {
+      category: {
+        default: ''
+      },
       tag: {
         default: '未知',
         type: String
@@ -107,15 +111,23 @@
     margin: 10px 0;
     width: 100%;
     height: auto;
-    max-height: 800px;
+    max-height: 900px;
     /*height: 250px;*/
     /*clip:rect(0px,60px,200px,0px);*/
+  }
+  .cardContentImgDashed{
+    margin: 10px 0;
+    height: 15px;
+    width: 100%;
+    background: url("../../assets/moviedashed.png") center left repeat-x;
+    background-size: contain;
   }
   .cardContentForward{
     color: #878787;
     font-size: 1.4rem;
   }
   .cardContentImg{
+    display: block;
     width: 100%;
     max-height: 800px;
   }

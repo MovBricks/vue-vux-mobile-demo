@@ -6,7 +6,7 @@ import Index from '../pages/indexPage.vue'
 // import test from '../pages/children/details/essay.vue'
 
 import EssayDetail from '../pages/children/details/essay.vue'
-
+import MovieDetail from '../pages/children/details/movie.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -27,10 +27,25 @@ export default new Router({
       component: EssayDetail
     },
     // {
-    //   path: '/test',
-    //   name: 'test',
-    //   component: test
+    //   name: 'SerialDetail',
+    //   path: '/reading/serial/:id',
+    //   component: SerialDetail
     // },
+    // {
+    //   name: 'QuestionDetail',
+    //   path: '/reading/question/:id',
+    //   component: QuestionDetail
+    // },
+    // {
+    //   name: 'MusicDetail',
+    //   path: '/music/:id',
+    //   component: MusicDetail
+    // },
+    {
+      name: 'MovieDetail',
+      path: '/movie/:id',
+      component: MovieDetail
+    },
     {
       path: '*',
       name: '404',

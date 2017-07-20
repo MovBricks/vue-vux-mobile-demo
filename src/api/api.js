@@ -54,6 +54,6 @@ export default {
   // 根据id获取影视详情信息
   getMovieById: '/api/movie/{id}/story/1/0',
   // 根据id获取头部滚动的五张图片和电影海报信息
-  getMoviePhotosById: '/api/movie/details/{id}'
+  getMoviePhotosById: '/api/movie/detail/{id}'
 
 }

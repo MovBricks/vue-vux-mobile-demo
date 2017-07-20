@@ -50,10 +50,10 @@
     data: function () {
       return {
         currentViewArray: [
-          'page-read',
           'page-home',
-          'page-movie',
-          'page-music'
+          'page-read',
+          'page-music',
+          'page-movie'
         ],
         footerTabbarIndex: 0
       }

@@ -6,8 +6,8 @@
           '1': 'EssayDetail',
           '2': 'SerialDetail',
           '3': 'QuestionDetail',
-          '4': 'Music',
-          '5': 'Movie'
+          '4': 'MusicDetail',
+          '5': 'MovieDetail'
         }
         return Category ? map[Category] : ''
       },

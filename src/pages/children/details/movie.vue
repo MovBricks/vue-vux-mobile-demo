@@ -1,23 +1,34 @@
 <template>
-  <div class="essay">
-    <com-detail-header :title="headerTitle" class="essayHeader"></com-detail-header>
-    <section class="essayScroll">
+  <div class="movie">
+    <com-detail-header :title="headerTitle" class="movieHeader"></com-detail-header>
+    <section class="movieScroll">
+      <!--头部滚动图片-->
+      <section class="movieScrollTopRoll">
+        <swiper :loop="true" :aspect-ratio="600/1080" class="swiperImgsWrapper">
+          <swiper-item v-for="(item, index) in photos" :key="index">
+            <img :src="item" class="swiperImg"/>
+          </swiper-item>
+        </swiper>
+        <h2 class="movieScrollSubtitle">《{{detail.title}}》</h2>
+      </section>
       <article>
         <!--标题-->
-        <header class="essayScrollHeader">
-          <h1 class="essayScrollTitle">{{article.hp_title}}</h1>
+        <header class="movieScrollHeader">
+          <h1 class="movieScrollTitle">{{article.title}}</h1>
           <hr />
-          <p class="essayScrollAuthor">文&nbsp/&nbsp{{author.user_name}}</p>
+          <p class="movieScrollAuthor">文&nbsp/&nbsp{{author.user_name}}</p>
         </header>
         <!--正文-->
-        <p class="essayScrollContent" v-html="article.hp_content"></p>
-        <footer class="essayScrollFooter">
+        <p class="movieScrollContent" v-html="article.content"></p>
+        <footer class="movieScrollFooter">
           <!--编辑-->
-          <div v-if="article.hp_author_introduce" class="editorIntroduce">
-              {{ article.hp_author_introduce.replace(/（|）/g, '') }}
+          <div v-if="article.charge_edt" class="editorIntroduce">
+              {{ article.charge_edt.replace(/（|）/g, '') }}&nbsp{{article.editor_email}}
           </div>
+          <!--copyright-->
+          <div v-if="article.copyright">{{article.copyright}}</div>
           <!--作者-->
-          <section class="authorInfo">
+          <section v-else class="authorInfo">
             <h2 class="authorInfoTitle">作者</h2>
             <hr />
             <ul class="authorInfoContent">
@@ -38,81 +49,106 @@
     </section>
     <com-detail-footer
       :likeCount="article.praisenum"
-      :commentNum="article.commentnum"
-      class="essayFooter"></com-detail-footer>
+      :commentNum="detail.commentnum"
+      class="movieFooter"></com-detail-footer>
   </div>
 </template>
 
 <script>
-  import { XButton } from 'vux'
+  import { SwiperItem, Swiper, XButton } from 'vux'
   import comDetailHeader from '../../../components/header/headDetailNavBar.vue'
   import comDetailFooter from '../../../components/footer/footDetailNavBar.vue'
   import { mapGetters, mapActions } from 'vuex'
   export default {
-    name: 'essayDetail',
+    name: 'movieDetail',
     components: {
       XButton,
+      Swiper,
+      SwiperItem,
       'com-detail-header': comDetailHeader,
       'com-detail-footer': comDetailFooter
     },
     computed: {
-      ...mapGetters('storeReadPage', [
+      ...mapGetters('storeMoviePage', [
         'article',
-        'tag',
-        'author'
+        'author',
+        'detail',
+        'photos'
       ]),
       headerTitle: function () {
-        return this.tag ? this.tag : '一个阅读'
+        return this.tag ? this.tag : '一个影视'
       }
     },
     created () {
       console.log(this.$route.params)
       window.scrollTo(0, 0)
-      this.getEssayById(this.$route.params.id)
-//      this.getEssayById(2632)
+      let id = this.$route.params.id
+      this.subtitle = this.$route.params.subtitle
+      this.getMoviePhotosById(id)
+      this.getMovieById(id)
     },
     data: function () {
       return {
+        subtitle: ''
       }
     },
     methods: {
-      ...mapActions('storeReadPage', [
-        'getEssayById'
+      ...mapActions('storeMoviePage', [
+        'getMovieById',
+        'getMoviePhotosById'
       ])
     }
   }
 </script>
 
 <style scoped>
-  .essayHeader{
+  .movieHeader{
     position: fixed;
     top:0;
     width: 100%;
     z-index: 10;
   }
-  .essayScroll{
+  .movieScroll{
     background-color: white;
     padding: 50px 20px;
+  }
+  .movieScrollTopRoll{
+    margin: 0 -20px;
+  }
+  .swiperImgsWrapper{
+    /*height: 210px;*/
+    width: 100%;
+  }
+  .swiperImg{
+    width: 100%;
+  }
+  .movieScrollSubtitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #808080;
+    padding: 10px 0;
   }
   hr{
     margin: 15px 0;
     border: 2px solid #000;
     width: 70px;
   }
-  .essayScrollTitle{
+  .movieScrollTitle{
     font-size: 2.8rem;
     font-weight: bold;
   }
-  .essayScrollAuthor{
+  .movieScrollAuthor{
     padding-bottom: 20px;
     font-size: 1.3rem;
   }
-  .essayScrollContent{
+  .movieScrollContent{
     font-family: "PingFangSC-Light",sans-serif;
     font-size: 1.6rem;
     text-shadow: none;
   }
-  .essayScrollFooter{
+  .movieScrollFooter{
     margin-bottom: 20px;
   }
   .editorIntroduce{
@@ -149,7 +185,7 @@
   .followButton{
     align-self:center;
   }
-  .essayFooter{
+  .movieFooter{
     position: fixed;
     bottom:0;
     width: 100%;

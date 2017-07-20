@@ -17,7 +17,6 @@ const state = {
 // getters
 const getters = {
   loading: state => {
-    console.log('state.loading ' + state.loading)
     return state.loading
   },
   topten: state => state.topten,

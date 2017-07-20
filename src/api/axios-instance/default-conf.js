@@ -16,7 +16,8 @@ instance.defaults.headers.post['Content-Type'] = 'application/json'
 // http request 拦截器
 instance.interceptors.request.use(
   config => {
-    console.log('request:' + JSON.stringify(config))
+    // console.log('request:' + JSON.stringify(config))
+    console.log('request:' + JSON.stringify(config.url))
     return config
   },
   err => {

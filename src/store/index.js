@@ -6,7 +6,7 @@ import * as mutations from './mutations'
 import storeIndexPage from './modules/storeIndexPage'
 import storeHomePage from './modules/storeHomePage'
 import storeReadPage from './modules/storeReadPage'
-
+import storeMoviePage from './modules/storeMoviePage'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -14,6 +14,7 @@ export default new Vuex.Store({
   getters,
   mutations,
   modules: {
+    storeMoviePage,
     storeReadPage,
     storeIndexPage,
     storeHomePage
