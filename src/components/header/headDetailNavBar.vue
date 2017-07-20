@@ -1,11 +1,11 @@
 <template>
-  <header class="headerNavBar">
-    <button class="headerNavBarIcon" @click="changeAsideShowFlag(true)">
-      <x-icon class="headerNavBarXicon" type="ios-arrow-left" size="25"></x-icon>
+  <header class="headerDetailNavBar">
+    <button class="headerDetailNavBarIcon" @click="headerDetailNavBarBackClick()">
+      <x-icon class="headerDetailNavBarXicon" type="ios-arrow-left" size="25"></x-icon>
     </button>
-    <h1 class="headerNavBarTitle">{{title}}</h1>
-    <a class="headerNavBarIcon">
-      <x-icon class="headerNavBarXicon" type="share" size="25"></x-icon>
+    <h1 class="headerDetailNavBarTitle">{{title}}</h1>
+    <a class="headerDetailNavBarIcon">
+      <x-icon class="headerDetailNavBarXicon" type="share" size="25"></x-icon>
     </a>
   </header>
 </template>
@@ -25,6 +25,9 @@
       }
     },
     methods: {
+      headerDetailNavBarBackClick: function () {
+        this.$router.go(-1)
+      },
       ...mapActions('storeIndexPage', [
         'changeAsideShowFlag'
       ])
@@ -32,7 +35,7 @@
   }
 </script>
 <style scoped>
-  .headerNavBar{
+  .headerDetailNavBar{
     background-color: white;
     color: black;
     display: flex;
@@ -40,14 +43,14 @@
     align-items: center;
     padding: 5px 0;
   }
-  .headerNavBarIcon{
+  .headerDetailNavBarIcon{
     margin: 0 10px;
     fill: rgb(53,73,94);
   }
-  .headerNavBarTitle{
+  .headerDetailNavBarTitle{
     font-size: 1.6rem;
   }
-  .headerNavBarXicon{
+  .headerDetailNavBarXicon{
     fill: #ABABAB;
   }
 </style>

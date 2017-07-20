@@ -17,7 +17,7 @@
         :forward="item.forward"
         :timeBefore="getTimeBefore(item)"
         :likeCount="item.like_count"
-        @click="waterFallCardClick(item)"
+        @click.native="waterFallCardClick(item)"
       ></com-card>
         <!--:imgSrc="item.img_url"-->
       <!--&gt;</com-card>-->
@@ -56,6 +56,16 @@
       ...mapActions('storeHomePage', [
         'getIdlist'
       ]),
+      getRouterNameByCategory: function (Category) {
+        const map = {
+          '1': 'EssayDetail',
+          '2': 'SerialDetail',
+          '3': 'QuestionDetail',
+          '4': 'Music',
+          '5': 'Movie'
+        }
+        return Category ? map[Category] : ''
+      },
       getTagByCategory: function (Category) {
         const map = {
           '0': '插画',
@@ -101,7 +111,13 @@
         return retStr
       },
       waterFallCardClick: function (node) {
-        console.log('click')
+        this.$router.push({
+          name: this.getRouterNameByCategory(node.category),
+          params: {
+            id: node.item_id,
+            test: 223
+          }
+        })
       },
       loadMore: function () {
         console.log('laodMore')

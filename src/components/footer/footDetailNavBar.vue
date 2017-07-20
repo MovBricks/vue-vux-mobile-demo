@@ -6,10 +6,10 @@
       <li class="footerNavBarIcon"><x-icon class="footerNavBarXicon" type="ios-chatbubble-outline" size="25"></x-icon></li>
     </ul>
     <div class="footerNavBarLike">
-      <p>likecount</p><p>喜欢</p>
+      <p>{{likeCount}}</p><p>喜欢</p>
     </div>
     <a class="footerNavBarCommit">
-      <p>commit</p><p>评论</p>
+      <p>{{commentNum}}</p><p>评论</p>
     </a>
   </footer>
 </template>
@@ -19,9 +19,13 @@
 
   export default {
     props: {
-      title: {
-        default: '未知',
-        type: String
+      likeCount: {
+        default: 0,
+        type: Number
+      },
+      commentNum: {
+        default: 0,
+        type: Number
       }
     },
     data: function () {
@@ -38,13 +42,12 @@
 <style scoped>
   .footerNavBar{
     box-sizing: border-box;
-    color: black;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding: 5px 20px;
     background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.5);
     height: 48px;
     font-size: 1.2rem;
     color: #ABABAB;

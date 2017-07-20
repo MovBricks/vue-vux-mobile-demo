@@ -3,21 +3,21 @@ import onelistObj from './database/onelist'
 import essayObj from './database/essay'
 var mockstart = function () {
   // console.log('mockinit!!')
-  Mock.mock('http://v3.wufazhuce.com:8000/api/onelist/idlist', {
-    'res': '@natural(0, 0)',
-    'data|1-1': [
-      '4308',
-      '4312',
-      '4287',
-      '4286',
-      '4285',
-      '4284',
-      '4283',
-      '4281',
-      '4277',
-      '4202'
-    ]
-  })
+  // Mock.mock('http://v3.wufazhuce.com:8000/api/onelist/idlist', {
+  //   'res': '@natural(0, 0)',
+  //   'data|1-1': [
+  //     '4308',
+  //     '4312',
+  //     '4287',
+  //     '4286',
+  //     '4285',
+  //     '4284',
+  //     '4283',
+  //     '4281',
+  //     '4277',
+  //     '4202'
+  //   ]
+  // })
   Mock.mock('http://v3.wufazhuce.com:8000/api/onelist/4308/0', onelistObj)
   Mock.mock('http://v3.wufazhuce.com:8000/api/essay/2632', essayObj)
   Mock.mock('/sportsheart', {
