@@ -3,7 +3,8 @@ import * as types from '../mutation-types.js'
 
 // initial state
 const state = {
-  topten: [],
+  loading: false, // 无限下拉是否在加载中
+  topten: [], // 最新10条阅读数据
   article: {}, // 文章
   serial: {}, // 连载
   question: {}, // 问答
@@ -15,6 +16,10 @@ const state = {
 
 // getters
 const getters = {
+  loading: state => {
+    console.log('state.loading ' + state.loading)
+    return state.loading
+  },
   topten: state => state.topten,
   article: state => state.article,
   serial: state => state.serial,
@@ -33,8 +38,10 @@ const actions = {
     })
   },
   getNextPageById ({ commit }, id) {
+    commit(types.CHANGE_LOADING_FLAG, true)
     server.getNextPageById(id).then((response) => {
       commit(types.RECEIVE_NEXTPAGE, response.data.data)
+      commit(types.CHANGE_LOADING_FLAG, false)
     })
   },
   getEssayById ({ commit }, id) {
@@ -56,8 +63,11 @@ const actions = {
 
 // mutations
 const mutations = {
+  [types.CHANGE_LOADING_FLAG] (state, bool) {
+    state.loading = bool
+  },
   [types.RECEIVE_TOPTEN] (state, data) {
-    state.topten.length = 0
+    state.topten.splice(0, state.topten.length)
     state.topten = data
   },
   [types.RECEIVE_NEXTPAGE] (state, data) {

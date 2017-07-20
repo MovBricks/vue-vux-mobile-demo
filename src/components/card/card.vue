@@ -7,14 +7,14 @@
     </header>
     <div class="cardContent">
       <div class="cardContentImgWrapper">
-        <img :src="imgSrc" class="cardContentImg" alt="文章图片">
-        <!--<x-img-->
-          <!--class="cardContentImg"-->
-          <!--:src="imgSrc"-->
-          <!--@on-success="success"-->
-          <!--@on-error="error"-->
-          <!--:offset="400"-->
-          <!--container="#IdWaterFall"></x-img>-->
+        <!--<img :src="imgSrc" class="cardContentImg" alt="文章图片">-->
+        <x-img
+          class="cardContentImg"
+          :src="imgSrc"
+          @on-success="success"
+          @on-error="error"
+          :offset="400"
+          container="#IdWaterFall"></x-img>
       </div>
       <p class="cardContentForward">{{forward}}</p>
     </div>
