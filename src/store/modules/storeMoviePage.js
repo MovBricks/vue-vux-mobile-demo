@@ -2,6 +2,7 @@ import server from '../../api/axios-instance/movie'
 import * as types from '../mutation-types.js'
 
 const state = {
+  loading: false, // 无限下拉是否在加载中
   topten: [],
   article: {}, // 文章
   author: {}, // 文章作者
@@ -10,6 +11,9 @@ const state = {
 }
 
 const getters = {
+  loading: state => {
+    return state.loading
+  },
   topten: state => state.topten,
   article: state => state.article,
   author: state => state.author,

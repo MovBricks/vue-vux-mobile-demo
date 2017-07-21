@@ -9,7 +9,7 @@
             <img :src="item" class="swiperImg"/>
           </swiper-item>
         </swiper>
-        <h2 class="movieScrollSubtitle">《{{detail.title}}》</h2>
+        <h2 class="movieScrollSubtitle">{{'《' + detail.title + '》'}}</h2>
       </section>
       <article>
         <!--标题-->
@@ -56,8 +56,8 @@
 
 <script>
   import { SwiperItem, Swiper, XButton } from 'vux'
-  import comDetailHeader from '../../../components/header/headDetailNavBar.vue'
-  import comDetailFooter from '../../../components/footer/footDetailNavBar.vue'
+  import comDetailHeader from '../../components/header/headDetailNavBar.vue'
+  import comDetailFooter from '../../components/footer/footDetailNavBar.vue'
   import { mapGetters, mapActions } from 'vuex'
   export default {
     name: 'movieDetail',

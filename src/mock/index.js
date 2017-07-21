@@ -5,6 +5,7 @@ import onereadlistObj from './database/one-read-list'
 import onemovielistObj from './database/one-movie-list'
 import movieObj from './database/movie'
 import moviepictureObj from './database/movie-picture'
+import questionObj from './database/question'
 
 var mockstart = function () {
   // console.log('mockinit!!')
@@ -29,15 +30,11 @@ var mockstart = function () {
   Mock.mock('http://v3.wufazhuce.com:8000/api/channel/movie/more/0', onemovielistObj)
   Mock.mock('http://v3.wufazhuce.com:8000/api/movie/917/story/1/0', movieObj)
   Mock.mock('http://v3.wufazhuce.com:8000/api/movie/detail/917', moviepictureObj)
-  Mock.mock('/sendcomment', {
-    'weightmonth|5-12': [
-      '@natural(60, 120)'
-    ]
-  })
+  Mock.mock('http://v3.wufazhuce.com:8000/api/question/1799', questionObj)
   Mock.mock('/settargetcalorie', {
   })
 }
 
-// mockstart()
+mockstart()
 
 export default mockstart

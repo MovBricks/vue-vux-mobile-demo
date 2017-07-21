@@ -6,6 +6,7 @@
         v-for="(item,index) in nodes"
         v-if="index != 0"
         :key="index"
+        :category="getTagByCategory(item.category)"
         :tag="getTag(item)"
         :title="item.title"
         :author="getAuthorName(item)"
@@ -21,9 +22,9 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import comHeader from '../../components/header/headNavBar.vue'
-  import comCard from '../../components/card/card.vue'
-  import Mixins from '../../mixins/mixins.vue'
+  import comHeader from '../components/header/headNavBar.vue'
+  import comCard from '../components/card/card.vue'
+  import Mixins from '../mixins/mixins.vue'
 
   export default {
     name: 'homePage',

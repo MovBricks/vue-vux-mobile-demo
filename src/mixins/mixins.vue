@@ -37,7 +37,7 @@
         if (node.author) {
           retStr = node.author.user_name
           if (node.category !== '3') {
-            retStr = '文/' + retStr
+            retStr = '文╱' + retStr
           }
         }
         return retStr

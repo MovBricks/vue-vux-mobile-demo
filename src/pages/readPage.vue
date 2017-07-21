@@ -1,16 +1,15 @@
 <template>
   <div class="readPage">
     <com-header :title="headerTitle" class="readPageHeader"></com-header>
-    <!--<section-->
-      <!--v-infinite-scroll="loadMore"-->
-      <!--infinite-scroll-disabled="busy"-->
-      <!--infinite-scroll-distance="10"-->
-      <!--class="waterFall" id="IdWaterFall">-->
-    <section class="waterFall" id="IdWaterFall">
+    <section
+    v-infinite-scroll="loadMore"
+    infinite-scroll-disabled="busy"
+    infinite-scroll-distance="10"
+    class="waterFall" id="IdWaterFall">
+    <!--<section class="waterFall" id="IdWaterFall">-->
       <com-card
         v-for="(item,index) in topten"
         :key="index"
-        :category="getTagByCategory(item.category)"
         :tag="getTag(item)"
         :title="item.title"
         :author="getAuthorName(item)"
@@ -26,12 +25,12 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import comHeader from '../../components/header/headNavBar.vue'
-  import comCard from '../../components/card/card.vue'
-  import Mixins from '../../mixins/mixins.vue'
+  import comHeader from '../components/header/headNavBar.vue'
+  import comCard from '../components/card/card.vue'
+  import Mixins from '../mixins/mixins.vue'
 
   export default {
-    name: 'moviePage',
+    name: 'readPage',
     mixins: [Mixins],
     components: {
       'com-header': comHeader,
@@ -40,19 +39,20 @@
     data: function () {
       return {
         busy: false,
-        headerTitle: '一个影视'
+        headerTitle: '一个阅读'
       }
     },
     computed: {
-      ...mapGetters('storeMoviePage', [
-        'topten'
+      ...mapGetters('storeReadPage', [
+        'topten',
+        'loading'
       ])
     },
     created () {
       this.getTopTen()
     },
     methods: {
-      ...mapActions('storeMoviePage', [
+      ...mapActions('storeReadPage', [
         'getTopTen',
         'getNextPageById'
       ]),
@@ -60,13 +60,12 @@
         this.$router.push({
           name: this.getRouterNameByCategory(node.category),
           params: {
-            id: node.item_id,
-            subtitle: node.subtitle
+            id: node.item_id
           }
         })
       },
       getTag: function (node) {
-        return (node.tag_list.length > 0) ? node.tag_list[0].title : '影视'
+        return (node.tag_list.length > 0) ? node.tag_list[0].title : '阅读'
       },
       loadMore: function () {
         console.log('laodMore')

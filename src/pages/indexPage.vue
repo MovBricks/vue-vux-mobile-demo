@@ -9,16 +9,24 @@
     </transition>
     <footer class="footNavBar">
         <tabbar class="footNavBarTab">
-          <tabbar-item @on-item-click="footerTabbarClick(0)">
+          <tabbar-item
+            :class="{footNavBarTabItemOn: footerTabbarIndex === 0}"
+            @on-item-click="footerTabbarClick(0)">
             <x-icon slot="icon" type="ios-home-outline" class="footer-icon" size="27"></x-icon>
           </tabbar-item>
-          <tabbar-item @on-item-click="footerTabbarClick(1)">
+          <tabbar-item
+            :class="{footNavBarTabItemOn: footerTabbarIndex === 1}"
+            @on-item-click="footerTabbarClick(1)">
             <x-icon slot="icon" type="ios-book-outline" class="footer-icon" size="27"></x-icon>
           </tabbar-item>
-          <tabbar-item @on-item-click="footerTabbarClick(2)">
+          <tabbar-item
+            :class="{footNavBarTabItemOn: footerTabbarIndex === 2}"
+            @on-item-click="footerTabbarClick(2)">
             <x-icon slot="icon" type="ios-musical-notes" class="footer-icon" size="27"></x-icon>
           </tabbar-item>
-          <tabbar-item @on-item-click="footerTabbarClick(3)">
+          <tabbar-item
+            :class="{footNavBarTabItemOn: footerTabbarIndex === 3}"
+            @on-item-click="footerTabbarClick(3)">
             <x-icon slot="icon" type="ios-videocam-outline" class="footer-icon" size="27"></x-icon>
           </tabbar-item>
         </tabbar>
@@ -27,13 +35,13 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import { ViewBox, Tabbar, TabbarItem } from 'vux'
   import asideUserInfo from '../components/aside/asideUserInfo.vue'
-  import homePage from './children/homePage.vue'
-  import moviePage from './children/moviePage.vue'
-  import musicPage from './children/musicPage.vue'
-  import readPage from './children/readPage.vue'
+  import homePage from './homePage.vue'
+  import moviePage from './moviePage.vue'
+  import musicPage from './musicPage.vue'
+  import readPage from './readPage.vue'
 
   export default {
     name: 'indexPage',
@@ -50,23 +58,23 @@
     data: function () {
       return {
         currentViewArray: [
+          'page-music',
           'page-home',
           'page-read',
-          'page-music',
           'page-movie'
-        ],
-        footerTabbarIndex: 0
+        ]
       }
     },
     computed: {
       ...mapGetters('storeIndexPage', {
-        asideShowFlag: 'getAsideShowFlag'
+        asideShowFlag: 'getAsideShowFlag',
+        footerTabbarIndex: 'getFooterTabbarIndex'
       })
     },
     methods: {
-      footerTabbarClick (index) {
-        this.footerTabbarIndex = index
-      }
+      ...mapActions('storeIndexPage', {
+        footerTabbarClick: 'changeFooterTabbarIndex'
+      })
     }
   }
 </script>
@@ -80,7 +88,7 @@
   .footNavBarTab{
     position: relative;
   }
-  .footNavBar .weui-bar__item_on{
+  .footNavBarTabItemOn{
     fill: white;
     background-color: rgb(53,73,94);
   }

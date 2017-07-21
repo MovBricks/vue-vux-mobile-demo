@@ -2,14 +2,15 @@
   <div class="readPage">
     <com-header :title="headerTitle" class="readPageHeader"></com-header>
     <section
-    v-infinite-scroll="loadMore"
-    infinite-scroll-disabled="busy"
-    infinite-scroll-distance="10"
-    class="waterFall" id="IdWaterFall">
+      v-infinite-scroll="loadMore"
+      infinite-scroll-disabled="busy"
+      infinite-scroll-distance="10"
+      class="waterFall" id="IdWaterFall">
     <!--<section class="waterFall" id="IdWaterFall">-->
       <com-card
         v-for="(item,index) in topten"
         :key="index"
+        :category="getTagByCategory(item.category)"
         :tag="getTag(item)"
         :title="item.title"
         :author="getAuthorName(item)"
@@ -25,12 +26,12 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import comHeader from '../../components/header/headNavBar.vue'
-  import comCard from '../../components/card/card.vue'
-  import Mixins from '../../mixins/mixins.vue'
+  import comHeader from '../components/header/headNavBar.vue'
+  import comCard from '../components/card/card.vue'
+  import Mixins from '../mixins/mixins.vue'
 
   export default {
-    name: 'readPage',
+    name: 'moviePage',
     mixins: [Mixins],
     components: {
       'com-header': comHeader,
@@ -39,11 +40,11 @@
     data: function () {
       return {
         busy: false,
-        headerTitle: '一个阅读'
+        headerTitle: '一个影视'
       }
     },
     computed: {
-      ...mapGetters('storeReadPage', [
+      ...mapGetters('storeMoviePage', [
         'topten',
         'loading'
       ])
@@ -52,7 +53,7 @@
       this.getTopTen()
     },
     methods: {
-      ...mapActions('storeReadPage', [
+      ...mapActions('storeMoviePage', [
         'getTopTen',
         'getNextPageById'
       ]),
@@ -60,12 +61,13 @@
         this.$router.push({
           name: this.getRouterNameByCategory(node.category),
           params: {
-            id: node.item_id
+            id: node.item_id,
+            subtitle: node.subtitle
           }
         })
       },
       getTag: function (node) {
-        return (node.tag_list.length > 0) ? node.tag_list[0].title : '阅读'
+        return (node.tag_list.length > 0) ? node.tag_list[0].title : '影视'
       },
       loadMore: function () {
         console.log('laodMore')

@@ -6,9 +6,9 @@ import FastClick from 'fastclick'
 import App from './App'
 import router from './router'
 import store from './store'
-
 import infiniteScroll from 'vue-infinite-scroll'
-import './mock'
+
+// import './mock'
 
 Vue.use(infiniteScroll)
 

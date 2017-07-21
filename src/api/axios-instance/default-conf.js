@@ -28,8 +28,8 @@ instance.interceptors.request.use(
 // http response 拦截器
 instance.interceptors.response.use(
   response => {
-    // console.log('response:' + JSON.stringify(response.data))
-    console.log('response success')
+    console.log('response:' + JSON.stringify(response.data))
+    // console.log('response success')
     return response
   },
   err => {

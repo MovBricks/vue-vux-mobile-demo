@@ -41,7 +41,9 @@ export default {
   // 上拉刷新获取下一页音乐列表
   getNextMusic: '/api/channel/music/more/{id}',
   // 根据 `item_id` 获取音乐详情信息
-  getMusicById: '/api/music/details/{id}',
+  getMusicById: '/api/music/detail/{id}',
+  // 根据 `music_id` 获取音乐mp3地址
+  getMusicUrlById: 'http://musicafe.co:8080/api/get/song/xiami?id={id}',
 
   /**
    * 影视
