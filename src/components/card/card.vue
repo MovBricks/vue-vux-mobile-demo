@@ -9,12 +9,21 @@
       <div class="cardContentImgWrapper">
         <div class="cardContentImgDashed" v-if="category === '影视'"></div>
         <x-img
+          v-if="category !== '音乐'"
           class="cardContentImg"
+          :default-src="defaultImg"
           :src="imgSrc"
           @on-success="success"
           @on-error="error"
           :offset="400"
-          container="#IdWaterFall"></x-img>
+          container="#IdWaterFall">
+        </x-img>
+        <img
+          :style="{backgroundImage: backgroundUrl}"
+          v-if="category === '音乐'"
+          class="cardMusicMask"
+          src="../../assets/music-mask.png"
+          alt="" />
         <div class="cardContentImgDashed" v-if="category === '影视'"></div>
       </div>
       <p class="cardContentForward">{{forward}}</p>
@@ -32,7 +41,7 @@
 <script>
   import { XImg } from 'vux'
   import { mapActions } from 'vuex'
-  import imgSrc from '../../assets/logo.png'
+  import imgDefaultSrc from '../../assets/one-no-img.png'
 
   export default {
     props: {
@@ -52,7 +61,7 @@
         type: String
       },
       imgSrc: {
-        default: imgSrc,
+        default: imgDefaultSrc,
         type: String
       },
       forward: {
@@ -70,10 +79,16 @@
     },
     data: function () {
       return {
+        defaultImg: imgDefaultSrc
       }
     },
     components: {
       XImg
+    },
+    computed: {
+      backgroundUrl: function () {
+        return 'url(' + this.imgSrc + ')'
+      }
     },
     methods: {
       success: function () {
@@ -110,10 +125,17 @@
   .cardContentImgWrapper{
     margin: 10px 0;
     width: 100%;
-    height: auto;
+    /*height: 400px;*/
     max-height: 900px;
     /*height: 250px;*/
     /*clip:rect(0px,60px,200px,0px);*/
+    overflow: hidden;
+  }
+  .cardMusicMask{
+    width: 100%;
+    background: center no-repeat;
+    background-size: contain;
+    background-origin: content-box;
   }
   .cardContentImgDashed{
     margin: 10px 0;
@@ -130,6 +152,9 @@
     display: block;
     width: 100%;
     max-height: 800px;
+  }
+  .cardContentImgMusicStyle{
+    position: absolute;
   }
   .cardFooter{
     padding-top: 20px;

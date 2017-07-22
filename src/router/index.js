@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '../components/Hello.vue'
-// import HelloFromVux from '../components/HelloFromVux.vue'
+import Hello from '../components/404Hello.vue'
 import Index from '../pages/indexPage.vue'
-// import test from '../pages/children/details/essay.vue'
 
 import EssayDetail from '../pages/details/read/essay.vue'
 import MovieDetail from '../pages/details/movie.vue'

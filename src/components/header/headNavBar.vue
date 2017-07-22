@@ -4,9 +4,9 @@
       <x-icon class="headerNavBarXicon" type="android-person" size="27"></x-icon>
     </button>
     <h1 class="headerNavBarTitle">{{title}}</h1>
-    <a class="headerNavBarIcon">
+    <button class="headerNavBarIcon" @click="changeAsideSearchShowFlag(true)">
       <x-icon class="headerNavBarXicon" type="search" size="27"></x-icon>
-    </a>
+    </button>
   </header>
 </template>
 
@@ -26,7 +26,8 @@
     },
     methods: {
       ...mapActions('storeIndexPage', [
-        'changeAsideShowFlag'
+        'changeAsideShowFlag',
+        'changeAsideSearchShowFlag'
       ])
     }
   }

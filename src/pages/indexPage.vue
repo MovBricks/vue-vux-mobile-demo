@@ -1,11 +1,17 @@
 <template>
   <div>
-    <component :is="currentViewArray[footerTabbarIndex]"></component>
+    <component :is="currentViewArray[footerTabbarIndex]" ></component>
     <transition
       name="custom-classes-transition"
       enter-active-class="animated slideInLeft"
       leave-active-class="animated slideOutLeft">
-      <aside-user-info v-show="asideShowFlag"></aside-user-info>
+      <aside-user-info v-show="asideShowFlag" class="animatedControl"></aside-user-info>
+    </transition>
+    <transition
+      name="custom-classes-transition"
+      enter-active-class="animated slideInRight"
+      leave-active-class="animated slideOutRight">
+      <aside-search v-show="asideSearchShowFlag" class="animatedControl"></aside-search>
     </transition>
     <footer class="footNavBar">
         <tabbar class="footNavBarTab">
@@ -38,6 +44,7 @@
   import { mapGetters, mapActions } from 'vuex'
   import { ViewBox, Tabbar, TabbarItem } from 'vux'
   import asideUserInfo from '../components/aside/asideUserInfo.vue'
+  import asideSearch from '../components/aside/asideSearch.vue'
   import homePage from './homePage.vue'
   import moviePage from './moviePage.vue'
   import musicPage from './musicPage.vue'
@@ -49,6 +56,7 @@
       ViewBox,
       Tabbar,
       TabbarItem,
+      'aside-search': asideSearch,
       'aside-user-info': asideUserInfo,
       'page-home': homePage,
       'page-movie': moviePage,
@@ -58,15 +66,16 @@
     data: function () {
       return {
         currentViewArray: [
-          'page-music',
           'page-home',
           'page-read',
+          'page-music',
           'page-movie'
         ]
       }
     },
     computed: {
       ...mapGetters('storeIndexPage', {
+        asideSearchShowFlag: 'getAsideSearchShowFlag',
         asideShowFlag: 'getAsideShowFlag',
         footerTabbarIndex: 'getFooterTabbarIndex'
       })
@@ -80,10 +89,15 @@
 </script>
 
 <style scoped>
+  .animatedControl{
+    animation-duration: .5s;
+    -webkit-animation-duration: .5s;
+  }
   .footNavBar{
     position: fixed;
     bottom: 0;
     width: 100%;
+    z-index: 100;
   }
   .footNavBarTab{
     position: relative;

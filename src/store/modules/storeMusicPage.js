@@ -60,10 +60,14 @@ const mutations = {
     state.article = data
     state.author = data.author
     state.storyAuthor = data.story_author
+    state.musicCover = data.cover
   },
   [types.RECEIVE_MUSIC_URL] (state, data) {
-    state.musicCover = data.album.cover
-    state.musicUrl = data.url
+    if (data.success === true) {
+      state.musicUrl = data.url
+    } else {
+      state.musicUrl = ''
+    }
   }
 }
 

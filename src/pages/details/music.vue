@@ -11,6 +11,12 @@
           <!--<img :src="musicCover" alt="">-->
         </div>
         <audio id="musicPlayer" :src="musicUrl"></audio>
+        <toast
+          v-model="showToast"
+          type="text"
+          :time="1800"
+          width="300px"
+          position="bottom">{{toastStr}}</toast>
       </div>
       <article>
         <section>
@@ -59,13 +65,14 @@
 </template>
 
 <script>
-  import { XButton } from 'vux'
+  import { Toast, XButton } from 'vux'
   import comDetailHeader from '../../components/header/headDetailNavBar.vue'
   import comDetailFooter from '../../components/footer/footDetailNavBar.vue'
   import { mapGetters, mapActions } from 'vuex'
   export default {
     name: 'musicDetail',
     components: {
+      Toast,
       XButton,
       'com-detail-header': comDetailHeader,
       'com-detail-footer': comDetailFooter
@@ -92,6 +99,8 @@
     },
     data: function () {
       return {
+        toastStr: '很抱歉，此歌曲已经下架，无法播放',
+        showToast: false,
         showPlay: true
       }
     },
@@ -101,6 +110,10 @@
         'getMusicUrlById'
       ]),
       musicPlayerControlClick: function () {
+        if (this.musicUrl === '') {
+          this.showToast = true
+          return
+        }
         if (this.showPlay) {
           this.showPlay = false
           document.getElementById('musicPlayer').play()

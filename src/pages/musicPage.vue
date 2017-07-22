@@ -1,15 +1,16 @@
 <template>
   <div class="musicPage">
     <com-header :title="headerTitle" class="musicPageHeader"></com-header>
-    <!--<section-->
-      <!--v-infinite-scroll="loadMore"-->
-      <!--infinite-scroll-disabled="busy"-->
-      <!--infinite-scroll-distance="10"-->
-      <!--class="waterFall" id="IdWaterFall">-->
-      <section class="waterFall" id="IdWaterFall">
+    <section
+      v-infinite-scroll="loadMore"
+      infinite-scroll-disabled="busy"
+      infinite-scroll-distance="10"
+      class="waterFall" id="IdWaterFall">
+      <!--<section class="waterFall" id="IdWaterFall">-->
       <com-card
         v-for="(item,index) in topten"
         :key="index"
+        :category="getTagByCategory(item.category)"
         :tag="getTag(item)"
         :title="item.title"
         :author="getAuthorName(item)"
