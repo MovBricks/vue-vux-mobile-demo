@@ -1,5 +1,7 @@
 # vue-vux-mobile-demo
 
+效果展示：[手机访问入口](https://movbricks.github.io/vue-vux-mobile-demo/dist)
+
 >仿「ONE · 一个」应用的移动端web app <br/>
 >vue-cli搭建的框架。vue全家桶 + vux(UI界面) + animate(过渡动画)<br/>
 >api用的隔壁[gongph](https://github.com/gongph)大佬的：[地址](https://github.com/gongph/one-api) <del>代码也有很多借鉴</del> <br/>
@@ -8,8 +10,7 @@
  <pre><code>// 根据 `music_id` 获取音乐mp3地址
   getMusicUrlById: 'http://musicafe.co:8080/api/get/song/xiami?id={id}',
 </code></pre>
-  
-[成品手机访问入口](https://movbricks.github.io/vue-vux-mobile-demo/dist)
+
 
 ## 项目功能
 - [x] 阅读（文章内的插图没法获取，该图所在的位置会有文字提示下载「ONE · 一个」APP，以下功能都有这种问题）
