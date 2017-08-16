@@ -1,7 +1,9 @@
 # vue-vux-mobile-demo
 
->仿某应用的移动端web app <br/>
+>仿「ONE · 一个」应用的移动端web app <br/>
 >vue全家桶 + vux(界面) + animate(过渡动画)
+>api用的隔壁大佬的：[地址](https://github.com/gongph/one-api)
+><del>其实代码也有很多借鉴<del/>
 
 [手机访问入口](https://movbricks.github.io/vue-vux-mobile-demo/dist)
 
