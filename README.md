@@ -5,8 +5,7 @@
 >api用的隔壁[gongph](https://github.com/gongph)大佬的：[地址](https://github.com/gongph/one-api) <del>代码也有很多借鉴</del> <br/>
 >因为只能获取音乐文件ID,所以获取音乐文件内容是用的另一个daolao[LIU9293](https://github.com/LIU9293)的：[musicafe地址](https://github.com/LIU9293/musicafe)<br/>
 >该项目中代码就是这句
- <pre><code>
-  // 根据 `music_id` 获取音乐mp3地址
+ <pre><code>// 根据 `music_id` 获取音乐mp3地址
   getMusicUrlById: 'http://musicafe.co:8080/api/get/song/xiami?id={id}',
 </code></pre>
   
